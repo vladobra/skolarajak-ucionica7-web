@@ -8,6 +8,10 @@ public class Vlasnik {
 	private String brojVozackeDozvole;
 	private Vozilo vozilo;
 	
+	public Vlasnik() {
+		
+	}
+	
 	public String getIme() {
 		return ime;
 	}
