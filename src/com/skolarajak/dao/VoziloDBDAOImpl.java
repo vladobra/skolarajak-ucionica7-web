@@ -17,9 +17,9 @@ import com.skolarajak.utils.Konstante;
 import com.skolarajak.utils.SysUtils;
 
 public class VoziloDBDAOImpl implements VoziloDAO {
-	
+
 	public VoziloDBDAOImpl() throws ClassNotFoundException {
-		 Class.forName(DBUtils.myDriver);
+		Class.forName(DBUtils.myDriver);
 	}
 
 	@Override
@@ -34,13 +34,13 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 			// create the mysql insert preparedstatement
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
 			preparedStmt.setString(1, vozilo.getRegistarskiBroj());
-			preparedStmt.setInt(2,vozilo.getGodisteProizvodnje());
+			preparedStmt.setInt(2, vozilo.getGodisteProizvodnje());
 			preparedStmt.setBoolean(3, vozilo.isAktivno());
 			preparedStmt.setString(4, vozilo.getVlasnik().getBrojVozackeDozvole());
 
 			// execute the preparedstatement
 			preparedStmt.execute();
-            preparedStmt.close();
+			preparedStmt.close();
 			conn.close();
 		} catch (Exception e) {
 			System.err.println("Got an exception!");
@@ -52,7 +52,7 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 	@Override
 	public Vozilo read(String registarskiBroj) throws ResultNotFoundException {
 		Vlasnik vlasnik = new Vlasnik();
-		Vozilo vozilo =  new Vozilo();
+		Vozilo vozilo = new Vozilo();
 		try {
 			Connection conn = getConnection();
 
@@ -62,28 +62,27 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 
 			// create the mysql insert preparedstatement
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
-		
+
 			preparedStmt.setString(1, registarskiBroj);
 
 			// execute the preparedstatement
-			
+
 			ResultSet rs = preparedStmt.executeQuery();
-			
-		    while ( rs.next() )
-		    {
-		      vlasnik.setBrojVozackeDozvole(rs.getString("brojVozackeDozvole") );
-		      vlasnik.setIme(rs.getString("ime") );
-		      vlasnik.setPrezime(rs.getString("prezime") );
-		      
-		      vozilo.setRegistarskiBroj(registarskiBroj);
-		      vozilo.setGodisteProizvodnje(rs.getInt("godisteProizvodnje"));
-		      vozilo.setAktivno(rs.getBoolean("status"));
-		      vozilo.setVlasnik(vlasnik);
-		      
-		      vlasnik.setVozilo(vozilo);
-		    }
-		    
-		    rs.close();
+
+			while (rs.next()) {
+				vlasnik.setBrojVozackeDozvole(rs.getString("brojVozackeDozvole"));
+				vlasnik.setIme(rs.getString("ime"));
+				vlasnik.setPrezime(rs.getString("prezime"));
+
+				vozilo.setRegistarskiBroj(registarskiBroj);
+				vozilo.setGodisteProizvodnje(rs.getInt("godisteProizvodnje"));
+				vozilo.setAktivno(rs.getBoolean("status"));
+				vozilo.setVlasnik(vlasnik);
+
+				vlasnik.setVozilo(vozilo);
+			}
+
+			rs.close();
 			preparedStmt.close();
 			conn.close();
 		} catch (Throwable t) {
@@ -112,8 +111,8 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 
 			// execute the preparedstatement
 			preparedStmt.executeUpdate();
-			
-            preparedStmt.close();
+
+			preparedStmt.close();
 			conn.close();
 		} catch (Exception e) {
 			System.err.println("Got an exception!");
@@ -136,8 +135,8 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 
 			// execute the preparedstatement
 			preparedStmt.execute();
-			
-            preparedStmt.close();
+
+			preparedStmt.close();
 			conn.close();
 		} catch (Exception e) {
 			System.err.println("Got an exception!");
@@ -152,10 +151,9 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 
 		try {
 			Connection conn = getConnection();
-	        
+
 			// the mysql insert statement
-			String query = "select * from vlasnik, vozilo"
-					+ " WHERE vlasnik.brojVozackeDozvole=vozilo.vlasnikId";
+			String query = "select * from vlasnik, vozilo" + " WHERE vlasnik.brojVozackeDozvole=vozilo.vlasnikId";
 
 			// create the mysql insert preparedstatement
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
@@ -176,7 +174,7 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 				vozilo.setAktivno(rs.getBoolean("status"));
 				vozilo.setVlasnik(vlasnik);
 				vlasnik.setVozilo(vozilo);
-				
+
 				vozila.add(vozilo);
 			}
 
@@ -192,7 +190,7 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 
 	@Override
 	public long count() throws ResultNotFoundException {
-		
+
 		long count = 0;
 		try {
 			Connection conn = getConnection();
@@ -202,15 +200,14 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 			// create the mysql insert preparedstatement
 			PreparedStatement preparedStmt = conn.prepareStatement(query);
 			// execute the preparedstatement
-			
+
 			ResultSet rs = preparedStmt.executeQuery();
-			
-		    while ( rs.next() )
-		    {      
-		      count = rs.getLong("broj");
-		    }
-		    
-		    rs.close();
+
+			while (rs.next()) {
+				count = rs.getLong("broj");
+			}
+
+			rs.close();
 			preparedStmt.close();
 			conn.close();
 		} catch (Exception e) {
@@ -228,8 +225,7 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 			Connection conn = getConnection();
 
 			// the mysql insert statement
-			String query = "select * from vlasnik, vozilo"
-					+ " WHERE vlasnik.brojVozackeDozvole=vozilo.vlasnikId "
+			String query = "select * from vlasnik, vozilo" + " WHERE vlasnik.brojVozackeDozvole=vozilo.vlasnikId "
 					+ "and vozilo.godisteProizvodnje>?";
 
 			// create the mysql insert preparedstatement
@@ -252,7 +248,7 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 				vozilo.setAktivno(rs.getBoolean("status"));
 				vozilo.setVlasnik(vlasnik);
 				vlasnik.setVozilo(vozilo);
-				
+
 				vozila.add(vozilo);
 			}
 
@@ -296,7 +292,7 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 				vozilo.setAktivno(rs.getBoolean("status"));
 				vozilo.setVlasnik(vlasnik);
 				vlasnik.setVozilo(vozilo);
-				
+
 				vozila.add(vozilo);
 			}
 
@@ -320,8 +316,7 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 			SysUtils.printDuration(startTime);
 
 			// the mysql insert statement
-			String query = "select * from vlasnik, vozilo"
-					+ " WHERE vlasnik.brojVozackeDozvole=vozilo.vlasnikId "
+			String query = "select * from vlasnik, vozilo" + " WHERE vlasnik.brojVozackeDozvole=vozilo.vlasnikId "
 					+ "and lower(vlasnik.ime) like '%a%'";
 
 			// create the mysql insert preparedstatement
@@ -343,7 +338,7 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 				vozilo.setAktivno(rs.getBoolean("status"));
 				vozilo.setVlasnik(vlasnik);
 				vlasnik.setVozilo(vozilo);
-				
+
 				vozila.add(vozilo);
 			}
 
@@ -356,10 +351,57 @@ public class VoziloDBDAOImpl implements VoziloDAO {
 		}
 		return vozila;
 	}
-	
-private Connection getConnection() throws ClassNotFoundException, SQLException {
+
+	private Connection getConnection() throws ClassNotFoundException, SQLException {
 		return C3poDataSource.getConnection();
-		//return DriverManager.getConnection(DBUtils.myUrl, "root", "root");
+		// return DriverManager.getConnection(DBUtils.myUrl, "root", "root");
+	}
+
+	@Override
+	public List<Vozilo> getEuro3Vozila(int page) throws ResultNotFoundException {
+		List<Vozilo> vozila = new ArrayList<Vozilo>();
+
+		try {
+			Connection conn = getConnection();
+            int brojPrvogSlogaNaStrani = (page-1)*Konstante.VELICINA_TABELE_PRIKAZA + 1;
+			// the mysql insert statement
+			String query = "select * from vlasnik, vozilo "
+			+ "WHERE vlasnik.brojVozackeDozvole=vozilo.vlasnikId "
+			+ "and vozilo.godisteProizvodnje>? " 
+			+ "LIMIT " + brojPrvogSlogaNaStrani +","+ Konstante.VELICINA_TABELE_PRIKAZA;
+
+			// create the mysql insert preparedstatement
+			PreparedStatement preparedStmt = conn.prepareStatement(query);
+			preparedStmt.setInt(1, Konstante.EURO_3_GODISTE);
+
+			// execute the preparedstatement
+
+			ResultSet rs = preparedStmt.executeQuery();
+
+			while (rs.next()) {
+				Vlasnik vlasnik = new Vlasnik();
+				Vozilo vozilo = new Vozilo();
+				vlasnik.setBrojVozackeDozvole(rs.getString("brojVozackeDozvole"));
+				vlasnik.setIme(rs.getString("ime"));
+				vlasnik.setPrezime(rs.getString("prezime"));
+
+				vozilo.setRegistarskiBroj(rs.getString("regbroj"));
+				vozilo.setGodisteProizvodnje(rs.getInt("godisteProizvodnje"));
+				vozilo.setAktivno(rs.getBoolean("status"));
+				vozilo.setVlasnik(vlasnik);
+				vlasnik.setVozilo(vozilo);
+
+				vozila.add(vozilo);
+			}
+
+			rs.close();
+			preparedStmt.close();
+			conn.close();
+		} catch (Throwable t) {
+			System.err.println("Got an exception!");
+			System.err.println(t.getMessage());
+		}
+		return vozila;
 	}
 
 }

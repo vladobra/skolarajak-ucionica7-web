@@ -101,6 +101,12 @@ public class AdministriranjeVozila {
 
 		return euro3Vozila; // vrati euro 3 vozila godiste >= 2000
 	}
+	
+	public List<Vozilo> euro3Vozila(int page) throws ResultNotFoundException {
+		List<Vozilo> euro3Vozila = voziloDAO.getEuro3Vozila(page);
+
+		return euro3Vozila; // vrati euro 3 vozila godiste >= 2000
+	}
 
 	public List<Vozilo> aktivnaVozila() throws ResultNotFoundException {
 		List<Vozilo> aktivnaVozila = voziloDAO.getAktivnaVozila();
@@ -114,6 +120,10 @@ public class AdministriranjeVozila {
 	
 	public List<Vlasnik> dajSveVlasnike() throws ResultNotFoundException {
 		return vlasnikDAO.getAll();
+	}
+	
+	public Vlasnik dajVlasnika(String brojVozackeDozvole) throws ResultNotFoundException {
+		return vlasnikDAO.read(brojVozackeDozvole);
 	}
 	
 	public List<Vlasnik> dajSveVlasnikeAktivnihVozila() throws ResultNotFoundException {

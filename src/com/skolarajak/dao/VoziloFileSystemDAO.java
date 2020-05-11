@@ -121,4 +121,10 @@ public class VoziloFileSystemDAO implements VoziloDAO {
 		return FILE_ROOT + registarskiBroj + EXTENZIJA;
 	}
 
+	@Override
+	public List<Vozilo> getEuro3Vozila(int page) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

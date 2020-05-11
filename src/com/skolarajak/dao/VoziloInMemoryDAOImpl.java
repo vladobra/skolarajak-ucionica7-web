@@ -88,4 +88,10 @@ public class VoziloInMemoryDAOImpl implements VoziloDAO {
 				.collect(Collectors.toList());
 		
 	}
+
+	@Override
+	public List<Vozilo> getEuro3Vozila(int page) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

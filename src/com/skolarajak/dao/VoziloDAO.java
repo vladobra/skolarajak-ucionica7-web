@@ -15,6 +15,9 @@ public interface VoziloDAO {
 	long count() throws ResultNotFoundException;
 	
 	List<Vozilo> getEuro3Vozila() throws ResultNotFoundException;
+	
+	List<Vozilo> getEuro3Vozila(int page) throws ResultNotFoundException;
+	
 	List<Vozilo> getAktivnaVozila() throws ResultNotFoundException;
 	
 	List<Vozilo> getAllVozilaCijeImeVlasnikaSadrziSlovoA() throws ResultNotFoundException;
