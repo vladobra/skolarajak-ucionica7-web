@@ -9,4 +9,28 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  
+  <servlet>
+      <!-- 
+        This is arbitrary name for your servlet,
+        used in servlet-mapping below
+       -->
+      <servlet-name>Hello</servlet-name>
+
+      <!-- Name of your servlet class -->
+      <servlet-class>com.skolarajak.servlets.Hello</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>Hello</servlet-name>
+
+      <!--
+         Here you say location (under context) where your servlet
+         can receive requests.
+       -->
+      <url-pattern>/hello.html</url-pattern>
+    </servlet-mapping>
+  
+  
 </web-app>
