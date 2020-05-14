@@ -106,4 +106,16 @@ public class VlasnikFileSystemDAO implements VlasnikDAO {
 		return FILE_ROOT + brojVozackeDozvole + EXTENZIJA;
 	}
 
+	@Override
+	public List<Vlasnik> getAll(int pageNumber) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Vlasnik> getAllBezVozila(int pageNumber) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

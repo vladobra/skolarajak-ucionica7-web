@@ -14,6 +14,7 @@ import com.skolarajak.exceptions.dao.ResultNotFoundException;
 import com.skolarajak.model.Vlasnik;
 import com.skolarajak.model.Vozilo;
 import com.skolarajak.utils.DBUtils;
+import com.skolarajak.utils.Konstante;
 import com.skolarajak.utils.RandomUtils;
 
 public class VlasnikDBDAOImpl implements VlasnikDAO {
@@ -261,5 +262,91 @@ public class VlasnikDBDAOImpl implements VlasnikDAO {
 	private Connection getConnection() throws ClassNotFoundException, SQLException {
         return C3poDataSource.getConnection();
 		//return DriverManager.getConnection(DBUtils.myUrl, "root", "root");
+	}
+
+	@Override
+	public List<Vlasnik> getAll(int pageNumber) throws ResultNotFoundException {
+		List<Vlasnik> vlasnici = new ArrayList<Vlasnik>();
+
+		try {
+			Connection conn = getConnection();
+			int brojPrvogSlogaNaStrani = (pageNumber-1)*Konstante.VELICINA_TABELE_PRIKAZA + 1;
+			// the mysql insert statement
+			String query = "select * from vlasnik, vozilo "
+					+ "WHERE vlasnik.brojVozackeDozvole=vozilo.vlasnikId order by vlasnik.id asc "
+			+ "LIMIT " + brojPrvogSlogaNaStrani +","+ Konstante.VELICINA_TABELE_PRIKAZA;
+
+
+			// create the mysql insert preparedstatement
+			PreparedStatement preparedStmt = conn.prepareStatement(query);
+
+			// execute the preparedstatement
+
+			ResultSet rs = preparedStmt.executeQuery();
+
+			while (rs.next()) {
+				Vlasnik vlasnik = new Vlasnik();
+				Vozilo vozilo = new Vozilo();
+				vlasnik.setBrojVozackeDozvole(rs.getString("brojVozackeDozvole"));
+				vlasnik.setIme(rs.getString("ime"));
+				vlasnik.setPrezime(rs.getString("prezime"));
+
+				vozilo.setRegistarskiBroj(rs.getString("regbroj"));
+				vozilo.setGodisteProizvodnje(rs.getInt("godisteProizvodnje"));
+				vozilo.setAktivno(rs.getBoolean("status"));
+				vozilo.setVlasnik(vlasnik);
+				vlasnik.setVozilo(vozilo);
+				
+				vlasnici.add(vlasnik);
+			}
+
+			rs.close();
+			preparedStmt.close();
+			conn.close();
+		} catch (Throwable t) {
+			System.err.println("Got an exception!");
+			System.err.println(t.getMessage());
+		}
+		return vlasnici;
+	}
+
+	@Override
+	public List<Vlasnik> getAllBezVozila(int pageNumber) throws ResultNotFoundException {
+		List<Vlasnik> vlasnici = new ArrayList<Vlasnik>();
+
+		try {
+			Connection conn = getConnection();
+			int brojPrvogSlogaNaStrani = (pageNumber-1)*Konstante.VELICINA_TABELE_PRIKAZA + 1;
+			// the mysql insert statement
+			String query = "select * from vlasnik "
+					+ "order by vlasnik.id asc "
+			+ "LIMIT " + brojPrvogSlogaNaStrani +","+ Konstante.VELICINA_TABELE_PRIKAZA;
+
+
+			// create the mysql insert preparedstatement
+			PreparedStatement preparedStmt = conn.prepareStatement(query);
+
+			// execute the preparedstatement
+
+			ResultSet rs = preparedStmt.executeQuery();
+
+			while (rs.next()) {
+				Vlasnik vlasnik = new Vlasnik();
+				
+				vlasnik.setBrojVozackeDozvole(rs.getString("brojVozackeDozvole"));
+				vlasnik.setIme(rs.getString("ime"));
+				vlasnik.setPrezime(rs.getString("prezime"));
+				
+				vlasnici.add(vlasnik);
+			}
+
+			rs.close();
+			preparedStmt.close();
+			conn.close();
+		} catch (Throwable t) {
+			System.err.println("Got an exception!");
+			System.err.println(t.getMessage());
+		}
+		return vlasnici;
 	}
 }

@@ -95,6 +95,10 @@ public class AdministriranjeVozila {
 		
 		return vozila;
 	}
+	
+	public void unesiVlasnika(Vlasnik vlasnik) {
+		vlasnikDAO.create(vlasnik);
+	}
 
 	public List<Vozilo> euro3Vozila() throws ResultNotFoundException {
 		List<Vozilo> euro3Vozila = voziloDAO.getEuro3Vozila();
@@ -120,6 +124,10 @@ public class AdministriranjeVozila {
 	
 	public List<Vlasnik> dajSveVlasnike() throws ResultNotFoundException {
 		return vlasnikDAO.getAll();
+	}
+	
+	public List<Vlasnik> dajSveVlasnike(int pageNumber) throws ResultNotFoundException {
+		return vlasnikDAO.getAllBezVozila(pageNumber);
 	}
 	
 	public Vlasnik dajVlasnika(String brojVozackeDozvole) throws ResultNotFoundException {

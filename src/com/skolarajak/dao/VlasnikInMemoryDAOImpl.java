@@ -75,4 +75,16 @@ public class VlasnikInMemoryDAOImpl implements VlasnikDAO {
 		.stream().filter(v -> v.getVozilo().isAktivno()).collect(Collectors.toList());
 	}
 
+	@Override
+	public List<Vlasnik> getAll(int pageNumber) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Vlasnik> getAllBezVozila(int pageNumber) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
