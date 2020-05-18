@@ -26,26 +26,34 @@ public class VlasnikDBDAOImpl implements VlasnikDAO {
 	}
 
 	@Override
-	public Vlasnik create(Vlasnik vlasnik) {
+	public Vlasnik create(Vlasnik vlasnik) throws SQLException {
+		Connection conn = null;
+		PreparedStatement preparedStmt = null;
 		try {
-			Connection conn = getConnection();
-
+			conn = getConnection();
+            conn.setAutoCommit(false); //primer transakcije
 			// the mysql insert statement
 			String query = "insert into vlasnik (brojVozackeDozvole, ime, prezime)" + " values (?, ?, ?)";
 
 			// create the mysql insert preparedstatement
-			PreparedStatement preparedStmt = conn.prepareStatement(query);
+			preparedStmt = conn.prepareStatement(query);
 			preparedStmt.setString(1, vlasnik.getBrojVozackeDozvole());
 			preparedStmt.setString(2, vlasnik.getIme());
 			preparedStmt.setString(3, vlasnik.getPrezime());
 
 			// execute the preparedstatement
 			preparedStmt.execute();
-			preparedStmt.close();
-			conn.close();
+			
+			conn.commit();
+			
 		} catch (Exception e) {
 			System.err.println("Got an exception!");
 			System.err.println(e.getMessage());
+			conn.rollback();
+			
+		} finally {
+			preparedStmt.close();
+			conn.close();
 		}
 		return vlasnik;
 	};

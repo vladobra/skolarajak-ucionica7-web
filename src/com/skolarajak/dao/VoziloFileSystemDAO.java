@@ -127,4 +127,10 @@ public class VoziloFileSystemDAO implements VoziloDAO {
 		return null;
 	}
 
+	@Override
+	public List<Vozilo> getAllVozilaZaVlasnika(String brojVozackeDozvole) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

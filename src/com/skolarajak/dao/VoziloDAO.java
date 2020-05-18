@@ -21,4 +21,7 @@ public interface VoziloDAO {
 	List<Vozilo> getAktivnaVozila() throws ResultNotFoundException;
 	
 	List<Vozilo> getAllVozilaCijeImeVlasnikaSadrziSlovoA() throws ResultNotFoundException;
+	
+	List<Vozilo> getAllVozilaZaVlasnika(String brojVozackeDozvole) throws ResultNotFoundException;
+
 }

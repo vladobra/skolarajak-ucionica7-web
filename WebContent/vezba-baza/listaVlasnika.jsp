@@ -31,6 +31,12 @@
 			out.write(String.format(dataTemplate,vlasnik.getPrezime()));
 			out.write(String.format(dataTemplate,vlasnik.getBrojVozackeDozvole()));
 			
+			String vlasnikLinkTemplate = "<a href='/javaweb/vezba-baza/brisiVlasnika.jsp?id=%s' target='_blank'>Obrisi</a>";
+			String brojVozDozvole = vlasnik.getBrojVozackeDozvole();
+			String vlasnikLink = String.format(vlasnikLinkTemplate, brojVozDozvole);
+			out.write(String.format(dataTemplate, vlasnikLink));
+
+			
 			out.write("</tr>");
 		}
 	} else {

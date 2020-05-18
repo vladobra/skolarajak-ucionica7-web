@@ -94,4 +94,10 @@ public class VoziloInMemoryDAOImpl implements VoziloDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Vozilo> getAllVozilaZaVlasnika(String brojVozackeDozvole) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

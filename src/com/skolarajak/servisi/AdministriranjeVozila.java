@@ -1,5 +1,6 @@
 package com.skolarajak.servisi;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +45,9 @@ public class AdministriranjeVozila {
 	 * Vrati test vozila
 	 * 
 	 * @return List<Vozilo> test vozila
+	 * @throws SQLException 
 	 */
-	public List<Vozilo> generisi() {
+	public List<Vozilo> generisi() throws SQLException {
 		List<Vozilo> vozila = new ArrayList<Vozilo>();
 		try {
 			Vozilo zadnjeVozilo = null;
@@ -96,7 +98,7 @@ public class AdministriranjeVozila {
 		return vozila;
 	}
 	
-	public void unesiVlasnika(Vlasnik vlasnik) {
+	public void unesiVlasnika(Vlasnik vlasnik) throws SQLException {
 		vlasnikDAO.create(vlasnik);
 	}
 
@@ -151,6 +153,14 @@ public class AdministriranjeVozila {
 			vlasnikDAO.delete(vlasnik.getBrojVozackeDozvole());
 		}
 	}
+	
+	public void obrisiVlasnika(String brojVozackeDozvole)throws ResultNotFoundException {
+		for(Vozilo vozilo : voziloDAO.getAllVozilaZaVlasnika(brojVozackeDozvole)) {
+			voziloDAO.delete(vozilo.getRegistarskiBroj());
+		}
+		vlasnikDAO.delete(brojVozackeDozvole);
+	}
+	
 
 	private int dodeliGodinuProizvodnje() {
 		// godiste <-- {Godiste random 1960 - 2019}
