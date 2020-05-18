@@ -1,6 +1,7 @@
 package com.skolarajak;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ import com.skolarajak.utils.PrikazUtils;
 public class AppConsole {
 	static final AdministriranjeVozila administracijaVozila = new AdministriranjeVozila();
 	
-	public static void main(String[] args) throws ResultNotFoundException, IOException {
+	public static void main(String[] args) throws ResultNotFoundException, IOException, SQLException {
 		Date datum = new Date();
 		System.out.println("Pocetak rada aplikacije: " + datum.toString());
 		
