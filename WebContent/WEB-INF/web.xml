@@ -31,6 +31,16 @@
        -->
       <url-pattern>/hello.html</url-pattern>
     </servlet-mapping>
-  
+    
+    <!--  -->
+    <servlet>
+      <servlet-name>ListajVlasnike</servlet-name>
+      <servlet-class>com.skolarajak.servlets.ListajVlasnike</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+      <servlet-name>ListajVlasnike</servlet-name>
+      <url-pattern>/vezba-servleti/listajVlasnike.html</url-pattern>
+    </servlet-mapping>
   
 </web-app>
