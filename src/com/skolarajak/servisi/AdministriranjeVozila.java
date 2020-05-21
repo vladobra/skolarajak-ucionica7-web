@@ -136,6 +136,10 @@ public class AdministriranjeVozila {
 		return vlasnikDAO.read(brojVozackeDozvole);
 	}
 	
+	public Vlasnik dajVlasnikaBezVozila(String brojVozackeDozvole) throws ResultNotFoundException, SQLException {
+		return vlasnikDAO.readBezVozila(brojVozackeDozvole);
+	}
+	
 	public List<Vlasnik> dajSveVlasnikeAktivnihVozila() throws ResultNotFoundException {
 		return vlasnikDAO.getAllVlasniciAktivnihVozila();
 	}

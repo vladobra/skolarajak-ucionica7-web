@@ -87,4 +87,10 @@ public class VlasnikInMemoryDAOImpl implements VlasnikDAO {
 		return null;
 	}
 
+	@Override
+	public Vlasnik readBezVozila(String brojVozackeDozvole) throws ResultNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

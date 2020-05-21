@@ -28,8 +28,8 @@
 			out.write(String.format(dataTemplate,vlasnik.getIme()));
 			out.write(String.format(dataTemplate,vlasnik.getPrezime()));
 			out.write(String.format(dataTemplate,vlasnik.getBrojVozackeDozvole()));
-			
-			String vlasnikLinkTemplate = "<a href='/javaweb/vezba-baza/brisiVlasnika.jsp?id=%s' target='_blank'>Obrisi</a>";
+			//domaci cas53
+			String vlasnikLinkTemplate = "<a href='/javaweb/vezba-servleti/obrisiVlasnika.html?id=%s' target='_blank'>Obrisi</a>";
 			String brojVozDozvole = vlasnik.getBrojVozackeDozvole();
 			String vlasnikLink = String.format(vlasnikLinkTemplate, brojVozDozvole);
 			out.write(String.format(dataTemplate, vlasnikLink));
