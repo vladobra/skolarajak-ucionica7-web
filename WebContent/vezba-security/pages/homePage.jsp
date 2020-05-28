@@ -8,6 +8,6 @@
 </head>
 <body>
 <jsp:include page="menu.jsp" />
-
+Home Page
 </body>
 </html>

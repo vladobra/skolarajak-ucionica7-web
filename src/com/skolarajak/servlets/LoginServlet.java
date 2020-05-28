@@ -37,22 +37,41 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
+		handleIsExistingUser(request, response, username, password);
+	}
+
+	protected void handleIsExistingUser(HttpServletRequest request, HttpServletResponse response, String username,
+			String password) throws IOException {
 		if (administracijaKorisnika.isRegistered(username)) {
-			if (administracijaKorisnika.isAuthenticated(username, password)) {
-				User user = administracijaKorisnika.getUser(username);
-				if (user != null) {
-					request.getSession().setAttribute("user", user);
-				}
-				if (user.getRole().equals(Roles.ADMIN)) {
-					request.getRequestDispatcher("/vezba-security/adminHomeServlet.html").forward(request, response);
-				} else {
-					request.getRequestDispatcher("/vezba-security/homeServlet.html").forward(request, response);
-				}
-			} else {
-				request.getRequestDispatcher("/vezba-security/wrongPassword.html").forward(request, response);
-			}
+			handleAuthentication(request, response, username, password);
 		} else {
-			request.getRequestDispatcher("/vezba-security/notRegisteredUser.html").forward(request, response);
+			response.sendRedirect("/javaweb/vezba-security/notRegisteredUser.html");
+		}
+	}
+
+	private void handleAuthentication(HttpServletRequest request, HttpServletResponse response, String username,
+			String password) throws IOException {
+		if (administracijaKorisnika.isAuthenticated(username, password)) {
+			handleUserRole(request, response, username);
+		} else {
+			response.sendRedirect("/javaweb/vezba-security/wrongPassword.html");
+		}
+	}
+
+	private void handleUserRole(HttpServletRequest request, HttpServletResponse response, String username)
+			throws IOException {
+		User user = administracijaKorisnika.getUser(username);
+		
+		if (user != null) {
+			request.getSession().setAttribute("user", user);
+		}
+		switch (user.getRole()) {
+		case ADMIN : response.sendRedirect("/javaweb/vezba-security/adminHomeServlet.html");
+			         break;
+		case USER  : response.sendRedirect("/javaweb/vezba-security/homeServlet.html");
+		             break;
+		default    : response.sendRedirect("/javaweb/vezba-security/notAuthorized.html");  
+		             break;
 		}
 	}
 

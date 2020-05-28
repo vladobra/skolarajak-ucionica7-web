@@ -12,5 +12,6 @@
 User user = (User)request.getSession().getAttribute("user");
 out.write("Projavljeni korisnik: " + user.getUsername());
 %>
+<a href="/javaweb/vezba-security/logout.html">LOGOUT</a>
 </body>
 </html>

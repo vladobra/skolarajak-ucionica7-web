@@ -9,7 +9,25 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
- 
+  
+  <error-page>
+   <error-code>403</error-code>
+   <location>/vezba-security/error.html</location>
+  </error-page>
+  
+ 	<security-constraint>
+        <web-resource-collection>
+            <web-resource-name>JSP Files</web-resource-name>
+            <description>No direct access to JSP files</description>
+            <url-pattern>/vezba-security/pages/*</url-pattern>
+            <http-method>POST</http-method>
+            <http-method>GET</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>No direct browser access to JSP files</description>
+            <role-name>NobodyHasThisRole</role-name>
+        </auth-constraint>
+    </security-constraint> 
   
   
   <servlet>

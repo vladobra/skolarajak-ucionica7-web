@@ -7,21 +7,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.skolarajak.model.Roles;
-
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet(value = "/vezba-security/homeServlet.html")
-public class HomeServlet extends BaseAuthorizationServlet {
+@WebServlet("/vezba-security/logout.html")
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public LogoutServlet() {
         super();
-        this.assignedRole = Roles.USER;
         // TODO Auto-generated constructor stub
     }
 
@@ -29,9 +26,9 @@ public class HomeServlet extends BaseAuthorizationServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if (isAuthorized(request, response)) {
-			request.getRequestDispatcher("/vezba-security/pages/homePage.jsp").forward(request, response);
-		}
+		// TODO Auto-generated method stub
+		request.getSession().setAttribute("user", null);
+		response.sendRedirect("/javaweb/vezba-security/login.html");
 	}
 
 	/**
