@@ -1,0 +1,38 @@
+.standardWidth {
+	width: 40%;
+}
+
+.menu-header {
+	background: PowderBlue;
+	text-align: right;
+}
+
+.footer {
+	background: Aquamarine;
+}
+
+.title {
+	font-size: 30px;
+	background: Indigo;
+	color: white;
+}
+
+.paginator {
+	background: MediumSlateBlue;
+	color:white;
+	display: flex;
+}
+
+a {
+	color: white;
+	font-size: 16px;
+}
+
+.pages {
+	width: 30%;
+	text-align: center;
+}
+
+.tabela-vlasnici {
+	margin: 0 auto;
+}
