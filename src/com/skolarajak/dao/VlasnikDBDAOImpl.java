@@ -361,7 +361,7 @@ public class VlasnikDBDAOImpl implements VlasnikDAO {
 	}
 
 	@Override
-	public List<Vlasnik> getAllBezVozila(int pageNumber) throws ResultNotFoundException {
+	public List<Vlasnik> getAllBezVozila(int pageNumber, int rowsInTable) throws ResultNotFoundException {
 		List<Vlasnik> vlasnici = new ArrayList<Vlasnik>();
 
 		try {
@@ -370,7 +370,7 @@ public class VlasnikDBDAOImpl implements VlasnikDAO {
 			// the mysql insert statement
 			String query = "select * from vlasnik "
 					+ "order by vlasnik.id asc "
-			+ "LIMIT " + brojPrvogSlogaNaStrani +","+ Konstante.VELICINA_TABELE_PRIKAZA;
+			+ "LIMIT " + brojPrvogSlogaNaStrani +","+ rowsInTable;
 
 
 			// create the mysql insert preparedstatement

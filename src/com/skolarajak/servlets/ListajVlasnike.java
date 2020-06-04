@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.skolarajak.exceptions.dao.ResultNotFoundException;
 import com.skolarajak.model.Vlasnik;
 import com.skolarajak.servisi.AdministriranjeVozila;
+import com.skolarajak.utils.Konstante;
 
 /**
  * Servlet implementation class ListajVlasnike
@@ -46,7 +47,7 @@ public class ListajVlasnike extends HttpServlet {
 		AdministriranjeVozila administracijaVozila = new AdministriranjeVozila();
 		
 		try {
-			vlasnici = administracijaVozila.dajSveVlasnike(pageNumber);
+			vlasnici = administracijaVozila.dajSveVlasnike(pageNumber, Konstante.VELICINA_TABELE_PRIKAZA);
 		} catch (ResultNotFoundException e) {
 			
 			e.printStackTrace();

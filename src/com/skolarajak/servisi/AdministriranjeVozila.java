@@ -128,8 +128,8 @@ public class AdministriranjeVozila {
 		return vlasnikDAO.getAll();
 	}
 	
-	public List<Vlasnik> dajSveVlasnike(int pageNumber) throws ResultNotFoundException {
-		return vlasnikDAO.getAllBezVozila(pageNumber);
+	public List<Vlasnik> dajSveVlasnike(int pageNumber, int rowsInTable) throws ResultNotFoundException {
+		return vlasnikDAO.getAllBezVozila(pageNumber, rowsInTable);
 	}
 	
 	public Vlasnik dajVlasnika(String brojVozackeDozvole) throws ResultNotFoundException {

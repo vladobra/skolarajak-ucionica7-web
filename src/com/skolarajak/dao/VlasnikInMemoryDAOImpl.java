@@ -82,7 +82,7 @@ public class VlasnikInMemoryDAOImpl implements VlasnikDAO {
 	}
 
 	@Override
-	public List<Vlasnik> getAllBezVozila(int pageNumber) throws ResultNotFoundException {
+	public List<Vlasnik> getAllBezVozila(int pageNumber, int rowsInTable) throws ResultNotFoundException {
 		// TODO Auto-generated method stub
 		return null;
 	}
