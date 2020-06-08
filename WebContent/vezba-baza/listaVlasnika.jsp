@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.List, com.skolarajak.servisi.AdministriranjeVozila, com.skolarajak.model.Vlasnik" contentType="text/html; charset=UTF-8"
+<%@ page language="java" import="java.util.List, com.skolarajak.utils.Konstante, com.skolarajak.servisi.AdministriranjeVozila, com.skolarajak.model.Vlasnik" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,7 +20,7 @@
 	
 	AdministriranjeVozila administracijaVozila = new AdministriranjeVozila();
 	
-	List<Vlasnik> vlasnici = administracijaVozila.dajSveVlasnike(pageNumber);
+	List<Vlasnik> vlasnici = administracijaVozila.dajSveVlasnike(pageNumber, Konstante.VELICINA_TABELE_PRIKAZA);
 	
 	String dataTemplate = "<td>%s</td>";
 	if(vlasnici.size() > 0) {
