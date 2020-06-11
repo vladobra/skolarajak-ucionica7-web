@@ -30,7 +30,7 @@
 		<a class="table-control" href="/javaweb/vezba-security/adminHomeServlet.html?mode=print&p=<%= pageNumber %>">PRINT</a>
 		<a class="table-control" href="/javaweb/vezba-security/adminHomeServlet.html?mode=print&p=1">PRINT ALL</a>
 	</div>
-	<table class="tabela-vlasnici" border="1">
+	<table class="tabela-vlasnici" border="0">
 		<th>Ime vlasinika</th>
 		<th>Prezime vlasinika</th>
 		<th>Broj vozacke dozvole</th>

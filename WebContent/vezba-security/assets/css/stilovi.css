@@ -40,3 +40,8 @@ a {
 .tabela-vlasnici {
 	margin: 0 auto;
 }
+
+#page-number {
+	color:white;
+	font-size: 16px;
+}
