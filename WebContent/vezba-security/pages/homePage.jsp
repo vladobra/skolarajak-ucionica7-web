@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<div class="title standardWidth">Administracija Vozila i Vlasnika</div>
+	<div class="title standardWidth">Administracija Vozila i Vlasnika!!!!</div>
 	<div class="menu-header standardWidth">
 		<div id="user-info"></div>
 		<a href="/javaweb/vezba-security/logout.html">LOGOUT</a>
