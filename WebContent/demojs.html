@@ -1,0 +1,81 @@
+<html>
+<head>
+<link href="/javaweb/dist/jquery.contextMenu.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+</head>
+<body>
+
+
+<span class="context-menu-one btn btn-neutral">right click me</span>
+
+<button class="context-menu-two btn btn-neutral">right click me</button>
+
+<img src="/javaweb/dist/img/a.jpg" alt="image">
+<img class="thumbnail" src="/javaweb/dist/img/a.jpg" alt="image">
+<img src="/javaweb/dist/img/a.jpg" alt="image">
+<script>
+
+var image = document.getElementsByClassName('thumbnail');
+new simpleParallax(image, {
+	orientation: 'right'
+});
+</script>
+
+
+
+
+
+
+
+
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="/javaweb/dist/jquery.ui.position.js"></script>
+
+<script src="/javaweb/dist/jquery.contextMenu.js"></script>
+
+<script type="text/javascript" class="showcase">
+$(function(){
+	
+	function openClick(key, opt, rootMenu, originalEvent) {
+		 var m = "clicked: " + key;
+         window.console && console.log(m) || alert(m); 
+	}
+	
+	function editClick(key, opt, rootMenu, originalEvent) {
+		 var m = "clicked: " + key;
+        window.console && console.log(m) || alert(m); 
+	}
+	
+	function closeClick(key, opt, rootMenu, originalEvent) {
+		//$.contextMenu('close', '.context-menu-one');
+
+	}
+
+    /**************************************************
+     * Context-Menu with custom command "label"
+     **************************************************/
+    $.contextMenu({
+        selector: '.context-menu-one', 
+
+        items: {
+            open: {name: "Open", callback: openClick},
+            
+            edit: {name: "Edit", callback: editClick},
+            close: {name: "Close", callback: closeClick},
+        }
+    });
+    
+    $.contextMenu({
+        selector: '.context-menu-two', 
+
+        items: {
+            open1: {name: "Open1", callback: openClick},
+            
+            edit1: {name: "Edit1", callback: editClick},
+            close1: {name: "Close1", callback: closeClick},
+        }
+    });
+});
+</script>
+</body>
+</html>
